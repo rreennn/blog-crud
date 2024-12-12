@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        @import url("https://fonts.googleapis.com/css2?family=Fasthand&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+        html {
+          font-family: "Merriweather", serif;
+        }
+        @layer utilities {
+          .font-merriweather {
+            font-family: "Merriweather", serif;
+          }
+          .font-kantumruy {
+            font-family: "Kantumruy Pro", sans-serif;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col justify-center items-center">
+      <%- include('layout/header') %>
+      <h1 class="mt-6 text-2xl font-bold font-merriweather">Add new post!</h1>
+      <div
+        class="form mt-8 w-[25rem] border rounded-lg border-2 shadow-lg flex px-4 py-5 justify-center"
+      >
+        <form action="/create-post" method="post">
+          <div class="mb-5">
+            <label
+              for="base-input"
+              class="block mb-2 font-kantumruy text-sm font-medium text-gray-900"
+              >Title</label
+            >
+            <input
+              required
+              type="text"
+              name="title"
+              id="base-input"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="base-input"
+              class="block mb-2 font-kantumruy text-sm font-medium text-gray-900"
+              >Summary</label
+            >
+            <input
+              required
+              type="text"
+              name="summary"
+              id="base-input"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="message"
+              class="block mb-2 font-kantumruy text-sm font-medium text-gray-900"
+              >Post Content</label
+            >
+            <textarea
+              required
+              id="message"
+              rows="4"
+              name="content"
+              class="block font-kantumruy p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Write your thoughts here..."
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label
+              for="author"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Select an author</label
+            >
+            <select
+              required
+              id="author"
+              name="author"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <% authors.forEach(author => { %>
+              <option value="<%= author._id %>"><%= author.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="flex justify-right float-right">
+            <input
+              type="submit"
+              name="submit"
+              class="text-black font-kantumruy bg-red-300 hover:bg-red-800 hover:text-white transition duration-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
