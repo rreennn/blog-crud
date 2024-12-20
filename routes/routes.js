@@ -5,7 +5,6 @@ const Author = require("../models/author");
 
 //create new post
 router.post("/create-post", async (req, res) => {
-  console.log("Request body:", req.body);
   try {
     const post = new Post({
       title: req.body.title,
@@ -28,7 +27,7 @@ router.post("/create-post", async (req, res) => {
 //select all post (display)
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find().populate("author");
+    const posts = await Post.find().populate("author").sort({ date: -1 });
     res.render("home", { title: "All Posts", posts: posts });
   } catch (err) {
     res.json({ message: err.message });

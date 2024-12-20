@@ -93,7 +93,7 @@
               class="bg-gray-50 font-kantumruy border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             >
               <% authors.forEach(author => { %>
-              <option value="<%= author._id %>"><%= author.name %></option>
+              <option value="<%= author._id %>" <%= post.author.toString() === author._id.toString() ? 'selected' : '' %> > <%= author.name %></option>
               <% }); %>
             </select>
           </div>
